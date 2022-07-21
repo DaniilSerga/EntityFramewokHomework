@@ -130,12 +130,12 @@ using (ApplicationContext db = new())
 using (ApplicationContext db = new ApplicationContext())
 {
     var students = db.Students
-        .Include(u => u.EducationalForm)
+        .Include(u => u.Dormitory)
         .ToList();
 
     Console.WriteLine("Студенты:");
-    foreach (Student student in students)
+    foreach (var student in students)
     {
-        Console.WriteLine($"{student.Id}. {student.Name} - {student.EducationalForm.Name}");
+        Console.WriteLine($"{student.Id}. {student.Name} - #общежития: {student.Dormitory.Number}");
     }
 }

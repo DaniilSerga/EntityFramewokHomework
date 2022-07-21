@@ -12,8 +12,8 @@ using University;
 namespace University.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220721073325_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220721075449_AddedPropertyPhoneNumber")]
+    partial class AddedPropertyPhoneNumber
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -323,8 +323,9 @@ namespace University.Migrations
                     b.Property<string>("GroupName")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool?>("IsMarried")
-                        .HasColumnType("bit");
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ScholarshipId")
                         .HasColumnType("int");

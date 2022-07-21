@@ -321,9 +321,6 @@ namespace University.Migrations
                     b.Property<string>("GroupName")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool?>("IsMarried")
-                        .HasColumnType("bit");
-
                     b.Property<int>("ScholarshipId")
                         .HasColumnType("int");
 
