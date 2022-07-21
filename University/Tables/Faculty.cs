@@ -12,6 +12,6 @@ namespace University.Tables
 
         public string Name { get; set; }
 
-        public List<Department> departments { get; set; }
+        public List<Department> Departments { get; set; }
     }
 }

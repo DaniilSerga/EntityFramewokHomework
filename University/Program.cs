@@ -127,7 +127,7 @@ using (ApplicationContext db = new())
 
 }
 
-using (ApplicationContext db = new ApplicationContext())
+using (ApplicationContext db = new())
 {
     var students = db.Students
         .Include(u => u.Dormitory)

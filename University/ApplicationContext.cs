@@ -31,5 +31,13 @@ namespace University
         {
             optionsBuilder.UseSqlServer(@"Server=localhost;Database=University;Trusted_Connection=True;");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BlockType>().HasData(
+                new BlockType { Id = 1, AmountOfSeats = 3, ChairsAmount = 3, TablesAmount = 1, WardrobesAmount = 3},
+                new BlockType { Id = 2, AmountOfSeats = 2, ChairsAmount = 2, TablesAmount = 1, WardrobesAmount = 2 }
+                );
+        }
     }
 }
