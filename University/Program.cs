@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using University;
 using University.Tables;
 
@@ -105,26 +106,25 @@ using (ApplicationContext db = new())
         new Parent { Name = "Серга Денис Андреевич", Children = new List<Student> {students[0] } },
     };
 
-    db.AcademicDegrees.AddRange(degrees);
-    db.Departments.AddRange(departments);
-    db.Disciplines.AddRange(disciplines);
-    db.Dormitories.AddRange(dormitories);
-    db.EducationForms.AddRange(educationForms);
-    db.Employees.AddRange(employees);
-    db.Faculties.AddRange(faculties);
-    db.Groups.AddRange(groups);
-    db.Specializations.AddRange(specializations);
-    db.Students.AddRange(students);
-    db.People.AddRange(people);
-    db.BlockTypes.AddRange(blockTypes);
-    db.Blocks.AddRange(blocks);
-    db.Parents.AddRange(parents);
-    db.Scholarships.AddRange(scholarships);
+    //db.AcademicDegrees.AddRange(degrees);
+    //db.Departments.AddRange(departments);
+    //db.Disciplines.AddRange(disciplines);
+    //db.Dormitories.AddRange(dormitories);
+    //db.EducationForms.AddRange(educationForms);
+    //db.Employees.AddRange(employees);
+    //db.Faculties.AddRange(faculties);
+    //db.Groups.AddRange(groups);
+    //db.Specializations.AddRange(specializations);
+    //db.Students.AddRange(students);
+    //db.People.AddRange(people);
+    //db.BlockTypes.AddRange(blockTypes);
+    //db.Blocks.AddRange(blocks);
+    //db.Parents.AddRange(parents);
+    //db.Scholarships.AddRange(scholarships);
 
-    db.SaveChanges();
+    //db.SaveChanges();
 
     Console.WriteLine("Успех!");
-
 }
 
 using (ApplicationContext db = new())
@@ -137,5 +137,15 @@ using (ApplicationContext db = new())
     foreach (var student in students)
     {
         Console.WriteLine($"{student.Id}. {student.Name} - #общежития: {student.Dormitory.Number}");
+    }
+
+    // Doesn't work
+    SqlParameter param = new("@salary", 3000.00);
+    var employees = db.Employees.FromSqlRaw("GetEmployeesBySalary @salary", param).ToList();
+
+    Console.WriteLine("Работники, зарплата которых больше 3000");
+    foreach (var employee in employees)
+    {
+        Console.WriteLine($"{employee.Id} - {employee.Salary}");
     }
 }

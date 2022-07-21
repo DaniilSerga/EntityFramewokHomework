@@ -23,7 +23,6 @@ namespace University
 
         public ApplicationContext()
         {
-            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
