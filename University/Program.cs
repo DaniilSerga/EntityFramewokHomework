@@ -106,23 +106,23 @@ using (ApplicationContext db = new())
         new Parent { Name = "Серга Денис Андреевич", Children = new List<Student> {students[0] } },
     };
 
-    //db.AcademicDegrees.AddRange(degrees);
-    //db.Departments.AddRange(departments);
-    //db.Disciplines.AddRange(disciplines);
-    //db.Dormitories.AddRange(dormitories);
-    //db.EducationForms.AddRange(educationForms);
-    //db.Employees.AddRange(employees);
-    //db.Faculties.AddRange(faculties);
-    //db.Groups.AddRange(groups);
-    //db.Specializations.AddRange(specializations);
-    //db.Students.AddRange(students);
-    //db.People.AddRange(people);
-    //db.BlockTypes.AddRange(blockTypes);
-    //db.Blocks.AddRange(blocks);
-    //db.Parents.AddRange(parents);
-    //db.Scholarships.AddRange(scholarships);
+    db.AcademicDegrees.AddRange(degrees);
+    db.Departments.AddRange(departments);
+    db.Disciplines.AddRange(disciplines);
+    db.Dormitories.AddRange(dormitories);
+    db.EducationForms.AddRange(educationForms);
+    db.Employees.AddRange(employees);
+    db.Faculties.AddRange(faculties);
+    db.Groups.AddRange(groups);
+    db.Specializations.AddRange(specializations);
+    db.Students.AddRange(students);
+    db.People.AddRange(people);
+    db.BlockTypes.AddRange(blockTypes);
+    db.Blocks.AddRange(blocks);
+    db.Parents.AddRange(parents);
+    db.Scholarships.AddRange(scholarships);
 
-    //db.SaveChanges();
+    db.SaveChanges();
 
     Console.WriteLine("Успех!");
 }
@@ -139,7 +139,9 @@ using (ApplicationContext db = new())
         Console.WriteLine($"{student.Id}. {student.Name} - #общежития: {student.Dormitory.Number}");
     }
 
-    // Doesn't work
+    // Error occured:
+    // "Using 'FromSqlRaw' on DbSet of 'Employee' is not supported since
+    // 'Employee' is part of hierarchy and does not contain a discriminator property."
     SqlParameter param = new("@salary", 3000.00);
     var employees = db.Employees.FromSqlRaw("GetEmployeesBySalary @salary", param).ToList();
 
